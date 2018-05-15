@@ -23,6 +23,14 @@ module ShopifyOrders
 
         end
 
+        def get_yesterday
+            my_now = Date.today
+            my_yesterday = my_now -1
+
+            puts my_now.strftime("%Y-%m-%d")
+            puts my_yesterday.strftime("%Y-%m-%d")
+        end
+
         def get_orders(my_min, my_max)
             ShopifyAPI::Base.site = "https://#{@apikey}:#{@password}@#{@shopname}.myshopify.com/admin"
             order_count = ShopifyAPI::Order.count( created_at_min: my_min, created_at_max: my_max, status: 'any')
@@ -294,9 +302,9 @@ module ShopifyOrders
                             case local_prop['name']
                             when "product_collection"
                                 myprod_collection = local_prop['value']
-                            when "leggings", "leggings:"
+                            when "leggings", "leggings:", "legging"
                                 myleggings = local_prop['value']
-                            when "sports-bra", "sports-bra:"
+                            when "sports-bra", "sports-bra:", "sports-bras"
                                 mysports_bra = local_prop['value']
                             when "top", "top:", "tops:"
                                 mytops = local_prop['value']

@@ -51,4 +51,10 @@ namespace :shopify_orders do
         ShopifyOrders::GetOrderInfo.new.get_ellie_products
     end
 
+    #get_yesterday
+    desc "Get yesterday's date"
+    task :get_yesterday do |t|
+        ShopifyOrders::GetOrderInfo.new.get_yesterday
+    end
+
 end
