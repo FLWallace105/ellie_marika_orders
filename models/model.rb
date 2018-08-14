@@ -21,3 +21,19 @@ end
 class EllieVariant < ActiveRecord::Base
     self.table_name = "ellie_variants"
 end
+
+class MarikaProduct < ActiveRecord::Base
+    self.table_name = "marika_products"
+end
+
+class MarikaVariant < ActiveRecord::Base
+    self.table_name = "marika_variants"
+end
+
+class ZobhaProduct < ActiveRecord::Base
+    self.table_name = "zobha_products"
+end
+
+class ZobhaVariant < ActiveRecord::Base
+    self.table_name = "zobha_variants"
+end
