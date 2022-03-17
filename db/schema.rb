@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_232811) do
+ActiveRecord::Schema.define(version: 2019_02_20_203648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acs_inventory", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "sku"
+  end
 
   create_table "ellie_collects", force: :cascade do |t|
     t.bigint "collect_id"
@@ -36,6 +41,11 @@ ActiveRecord::Schema.define(version: 2018_06_20_232811) do
     t.string "sort_order"
     t.string "template_suffix"
     t.string "published_scope"
+  end
+
+  create_table "ellie_order_not_acs", force: :cascade do |t|
+    t.string "order_name"
+    t.decimal "order_price", precision: 10, scale: 2
   end
 
   create_table "ellie_products", force: :cascade do |t|
@@ -71,7 +81,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_232811) do
     t.bigint "variant_id"
     t.string "title"
     t.decimal "price", precision: 10, scale: 2
-    t.bigint "sku"
+    t.string "sku"
     t.integer "position"
     t.string "inventory_policy"
     t.decimal "compare_at_price", precision: 10, scale: 2
@@ -94,6 +104,21 @@ ActiveRecord::Schema.define(version: 2018_06_20_232811) do
     t.string "tax_code"
     t.integer "old_inventory_quantity"
     t.boolean "requires_shipping"
+  end
+
+  create_table "ellie_variants_removed", force: :cascade do |t|
+    t.string "product_title"
+    t.string "variant_sku"
+    t.bigint "product_id"
+    t.bigint "variant_id"
+    t.string "variant_title"
+    t.decimal "variant_price", precision: 10, scale: 2
+    t.integer "variant_inventory_quantity"
+    t.string "handle"
+    t.string "published_scope"
+    t.string "product_type"
+    t.datetime "deleted_at"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "marika_products", force: :cascade do |t|
@@ -129,7 +154,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_232811) do
     t.bigint "variant_id"
     t.string "title"
     t.decimal "price", precision: 10, scale: 2
-    t.bigint "sku"
+    t.string "sku"
     t.integer "position"
     t.string "inventory_policy"
     t.decimal "compare_at_price", precision: 10, scale: 2

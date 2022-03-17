@@ -1,11 +1,19 @@
 require 'dotenv'
-Dotenv.load
+
 require 'active_record'
 require 'sinatra/activerecord/rake'
 
 require_relative 'ellie_orders'
 
+Dotenv.load
+include ActiveRecord::Tasks
+
 namespace :shopify_orders do
+
+    desc 'test product collection get products'
+    task :test_product_collection do |t|
+        ShopifyOrders::GetOrderInfo.new.test_product_collection
+    end
 
     desc 'run Jennifer Johnson request body_html requested product'
     task :jen_request_products do |t|

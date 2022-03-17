@@ -4,7 +4,7 @@ require 'dotenv'
 require 'csv'
 #Dotenv.load
 require 'active_record'
-require "sinatra/activerecord"
+require 'sinatra/activerecord'
 require_relative 'models/model'
 
 
@@ -36,17 +36,199 @@ module ShopifyOrders
         end
 
         def emergency_post_order
-            api_key = "e8230337f0f45e3795b125d5aec1a081"
-            password = "a3ed722374ae3e56b7eb3abeabd8cc0a"
-            shopname = "marikastaging"
+            api_key = "6055a057b6eb09cb6679e9f5c838b698"
+            password = "6411a4ba3d3924cd6c3a53c2c6c0b2e2"
+            shopname = "elliestaging"
             ShopifyAPI::Base.site = "https://#{api_key}:#{password}@#{shopname}.myshopify.com/admin"
 
-            order_hash = {"order" => {"email" => "tahniyatkazmi@gmail.com", "total_price" => "25.00", "line_items" => [{"variant_id" => 7266729164859, "product_id" => 586514956347, "sku" => 722457825660, "quantity" => 1, "price" => 25.00, "title" => "Amy Crop Hoodie", "properties" => [{"name" => "Final Sale", "value" => "true"}] } ], "customer" => { "first_name" => "Tahniyat", "last_name" => "Kazmi", "email" => "tahniyatkazmi@gmail.com"}, "billing_address" =>  { "first_name" => "Tahniyat", "last_name" => "Kazmi", "address1" => "207 Somewhere Street", "address2" => "", "phone" => "2135557780", "city" => "New York", "province" => "New York", "country" => "United States", "zip" => "90201"}, "shipping_address" => { "first_name" => "Tahniyat", "last_name" => "Kazmi", "address1" => "207 Somewhere Street", "address2" => "","phone" => "2135557780", "city" => "New York", "province" => "New York", "country" => "United States", "zip" => "90201" }  }, "shipping_lines" => [{ "title" => "Overnight", "price" => "24.95", "code" => "Overnight", "source" => "shopify", "phone" => nil, "requested_fulfillment_service_id" => nil, "delivery_category" => nil, "carrier_identifier" => nil?, "discounted_price" => "24.95", "discount_allocations" => [], "tax_lines" => [] } ] }
-
-            myorder = ShopifyAPI::Order.create(order_hash)
-            puts myorder.inspect
             
 
+            myorder = ShopifyAPI::Order.new(
+                :email => "devi_teem@outlook.com",
+                :gateway => "",
+                :test => false,
+                :total_price => "149.85",
+                :subtotal_price => "149.85",
+                :total_weight => 2268,
+                :total_tax => "0.00",
+                :taxes_included => false,
+                :currency => "USD",
+                :financial_status => "paid",
+                :confirmed => true,
+                :total_discounts => "0.00",
+                :total_line_items_price => "149.85",
+                :cart_token => nil,
+                :buyer_accepts_marketing => false,
+
+                :total_price_usd => "149.85",
+                :discount_applications => [],
+                :discount_codes => [],
+                :note_attributes => [],
+                :contact_email => "devi_teem@outlook.com",
+
+                :line_items => [
+                  ShopifyAPI::LineItem.new(
+                    :quantity => 1,
+                    :variant_id => 6348348620832,
+                    :title => "3 MONTHS",
+                    :price => "149.85",
+                    :sku => "722457572908",
+                    :variant_title => "",
+                    :vendor => "EllieActive",
+                    :fulfillment_service => "manual",
+                    :product_id => 614485950496,
+                    :requires_shipping => true,
+                    :taxable => true,
+                    :gift_card => false,
+                    :pre_tax_price => "149.85",
+                    :name => "3 MONTHS",
+                    :variant_inventory_management => nil,
+                    :properties => [{
+                        "name" => "accessories",
+                        "value" => "ONE SIZE"
+                      },
+                      {
+                        "name" => "charge_interval_frequency",
+                        "value" => "3"
+                      },
+                      {
+                        "name" => "charge_interval_unit_type",
+                        "value" => "Months"
+                      },
+                      {
+                        "name" => "equipment",
+                        "value" => "ONE SIZE"
+                      },
+                      {
+                        "name" => "leggings",
+                        "value" => "L"
+                      },
+                      {
+                        "name" => "main-product",
+                        "value" => "true"
+                      },
+                      {
+                        "name" => "recurring_price",
+                        "value" => "149.85"
+                      },
+                      {
+                        "name" => "shipping_interval_frequency",
+                        "value" => "1"
+                      },
+                      {
+                        "name" => "shipping_interval_unit_type",
+                        "value" => "Months"
+                      },
+                      {
+                        "name" => "sports-bra",
+                        "value" => "M"
+                      },
+                      {
+                        "name" => "tops",
+                        "value" => "M"
+                      },
+                      {
+                        "name" => "sports-jacket",
+                        "value" => "M"
+                      },
+                      {
+                        "name" => "product_collection",
+                        "value" => "Vinyasa Vibes - 5 Items"
+                      }],
+                    :product_exists => true,
+                    :fulfillable_quantity => 0,
+                    :grams => 2268,
+                    :total_discount => "0.00",
+                    :fulfillment_status => nil,
+                    :discount_allocations => [],
+                    :tax_lines => []
+                  )
+                ],
+                :shipping_lines => [
+                    {
+                      "title" => "Free Shipping (5-9 days)",
+                      "price" => "0.00",
+                      "code" => "Free Shipping (5-9 days)",
+                      "source" => "",
+                      "phone" => nil,
+                      "requested_fulfillment_service_id" => nil,
+                      "delivery_category" => nil,
+                      "carrier_identifier" => nil,
+                      "discounted_price" => "0.00",
+                      "discount_allocations" => [],
+                      "tax_lines" => []
+                    }
+                  ],
+                  :billing_address => {
+                    "first_name" => "Dev",
+                    "address1" => "5553 B Bandini Blvd",
+                    "phone" => "2135557780",
+                    "city" => "Bell",
+                    "zip" => "92705",
+                    "province" => "California",
+                    "country" => "United States",
+                    "last_name" => "Team",
+                    "address2" => "",
+                    "company" => "",
+                    "name" => "Dev Team",
+                    "country_code" => "US",
+                    "province_code" => "CA"
+                  },
+                  :shipping_address => {
+                    "first_name" => "Dev",
+                    "address1" => "5553 B Bandini Blvd",
+                    "phone" => "2135557780",
+                    "city" => "Bell",
+                    "zip" => "92705",
+                    "province" => "California",
+                    "country" => "United States",
+                    "last_name" => "Team",
+                    "address2" => "",
+                    "company" => "",
+                    "name" => "Dev Team",
+                    "country_code" => "US",
+                    "province_code" => "CA"
+                  },
+                  :fulfillments => [],
+                  :customer => {
+                    "id": 507621212192,
+                    "email": "devi_teem@outlook.com",
+                    "accepts_marketing": false,
+                    "first_name": "Dev",
+                    "last_name": "Team",
+                    "state": "enabled",
+                    "note": nil,
+                    "verified_email": true,
+                    "multipass_identifier": nil,
+                    "tax_exempt": false,
+                    "phone": nil,
+                    "default_address": {
+                      "id": 754691309619,
+                      "customer_id": 507621212192,
+                      "first_name": "Dev",
+                      "last_name": "Team",
+                      "company": "",
+                      "address1": "5553 B Bandini Blvd",
+                      "address2": "",
+                      "city": "Bell",
+                      "province": "California",
+                      "country": "United States",
+                      "zip": "90201",
+                      "phone": "2135557780",
+                      "name": "Floyd Wallace",
+                      "province_code": "CA",
+                      "country_code": "US",
+                      "country_name": "United States",
+                      "default": true
+                    }
+                  }
+
+              )
+            
+            puts myorder.inspect
+            myorder.save
+            puts "-----------------"
+            puts myorder.inspect
 
 
         end
@@ -58,15 +240,24 @@ module ShopifyOrders
             mybad_file = File.open('marika_duplicate_skus.csv', 'w')
             mybad_file.write("Product_title, variant_sku, product_id, variant_id, variant_title, variant_price, variant_inventory_quantity, handle, published_scope, product_type, tags\n")
 
-            sql_statement = "select count(marika_variants.variant_id), marika_variants.sku, marika_variants.title from marika_variants group by marika_variants.sku, marika_variants.title having count(marika_variants.variant_id) > 1"
+            sql_statement = "select count(marika_variants.id), marika_variants.sku, marika_variants.title from marika_variants group by marika_variants.sku, marika_variants.title having count(marika_variants.id) > 1"
 
             records_array = ActiveRecord::Base.connection.execute(sql_statement)
+            puts records_array.inspect
+            
 
             records_array.each do |myrec|
                 puts myrec.inspect
+                
                 num_duplicates = myrec['count']
                 master_bad_sku = myrec['sku']
-                more_sql = "select marika_variants.variant_id, marika_variants.title as var_title, marika_variants.price, marika_variants.sku, marika_variants.inventory_quantity, marika_variants.product_id, marika_products.handle, marika_products.title as prod_title, marika_products.tags, marika_products.published_scope, marika_products.product_type from marika_variants, marika_products where marika_products.product_id = marika_variants.product_id and  marika_variants.sku = #{myrec['sku']}"
+                master_bad_title = myrec['title']
+                more_sql = ""
+                if master_bad_sku == ""
+                more_sql = "select marika_variants.variant_id, marika_variants.title as var_title, marika_variants.price, marika_variants.sku, marika_variants.inventory_quantity, marika_variants.product_id, marika_products.handle, marika_products.title as prod_title, marika_products.tags, marika_products.published_scope, marika_products.product_type from marika_variants, marika_products where marika_products.product_id = marika_variants.product_id and  marika_variants.sku = null and marika_variants.title = \'#{master_bad_title}\'"
+                else
+                more_sql = "select marika_variants.variant_id, marika_variants.title as var_title, marika_variants.price, marika_variants.sku, marika_variants.inventory_quantity, marika_variants.product_id, marika_products.handle, marika_products.title as prod_title, marika_products.tags, marika_products.published_scope, marika_products.product_type from marika_variants, marika_products where marika_products.product_id = marika_variants.product_id and  marika_variants.sku = \'#{myrec['sku']}\' "
+                end
                 bad_individual_sku = ActiveRecord::Base.connection.execute(more_sql)
                 puts "-------------"
                 bad_individual_sku.each do |badsku|
@@ -163,7 +354,7 @@ module ShopifyOrders
             #puts "my_min = #{my_min}, #{my_max}"
             if (my_min.to_i == 0) && (my_max.to_i == 0)
                 my_now = Date.today
-                my_yesterday = my_now -1
+                my_yesterday = my_now - 1
                 local_min = my_yesterday.strftime("%Y-%m-%dT00:00:00-04:00") 
                 local_max = my_yesterday.strftime("%Y-%m-%dT23:58:00-4:00")
                 stuff_to_return = {"my_min" => local_min, "my_max" => local_max}
@@ -195,7 +386,8 @@ module ShopifyOrders
                 orders = ShopifyAPI::Order.find(:all, params: {limit: 250, created_at_min: my_min, created_at_max: my_max, status: 'any', page: page})
                 orders.each do |myorder|
                     puts "-----------------"
-                    #puts myorder.inspect
+                    puts myorder.inspect
+                    exit
                     puts myorder.customer.attributes['first_name'].inspect
                     puts "-----------------"
                     
@@ -320,20 +512,26 @@ module ShopifyOrders
 
         def get_marika_products
             ShopifyAPI::Base.site = "https://#{@marika_key}:#{@marika_password}@#{@marika_shopname}.myshopify.com/admin"
+            ShopifyAPI::Base.api_version = '2021-10'
             product_count = ShopifyAPI::Product.count()
             puts "We have #{product_count} products for Marika, BABY!"
 
-            page_size = 250
-            pages = (product_count / page_size.to_f).ceil
+            # page_size = 250
+            # pages = (product_count / page_size.to_f).ceil
 
             MarikaProduct.delete_all
             ActiveRecord::Base.connection.reset_pk_sequence!('marika_products')
             MarikaVariant.delete_all
             ActiveRecord::Base.connection.reset_pk_sequence!('marika_variants')
 
-            1.upto(pages) do |page|
-                myproducts = ShopifyAPI::Product.find(:all, params: {limit: 250, page: page})
-                myproducts.each do |myprod|
+            products = ShopifyAPI::Product.find(:all)
+
+            #First page
+            products.each do |myprod|
+
+            
+                
+               
                     puts "-----------"
                     puts myprod.inspect
                     myprodid = myprod.attributes['id']
@@ -389,134 +587,24 @@ module ShopifyOrders
                         mytax_code = myvar.attributes['tax_code']
                         myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
                         myrequires_shipping = myvar.attributes['requires_shipping']
-                        myellie_variant = MarikaVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: myvartitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
+                        MarikaVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: myvartitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
 
                     end
                     #puts myimages_array.inspect
-                    my_ellie_product = MarikaProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
+                    MarikaProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
                     puts "-----------"
 
                 end
 
-                puts "Done with Page #{page}"
-                puts "Sleeping 4 secs"
-                sleep 4
-            end
-            puts "All done with products"
+                
+                
+            
+            puts "Done with first page"
 
-
-        end
-
-        def get_zobha_products
-            ShopifyAPI::Base.site = "https://#{@zobha_key}:#{@zobha_password}@#{@zobha_shopname}.myshopify.com/admin"
-            puts "https://#{@zobha_key}:#{@zobha_password}@#{@zobha_shopname}.myshopify.com/admin"
-            product_count = ShopifyAPI::Product.count()
-            puts "We have #{product_count} products for Zobha, BABY!"
-
-            page_size = 250
-            pages = (product_count / page_size.to_f).ceil
-
-            ZobhaProduct.delete_all
-            ActiveRecord::Base.connection.reset_pk_sequence!('marika_products')
-            ZobhaVariant.delete_all
-            ActiveRecord::Base.connection.reset_pk_sequence!('marika_variants')
-
-            1.upto(pages) do |page|
-                myproducts = ShopifyAPI::Product.find(:all, params: {limit: 250, page: page})
-                myproducts.each do |myprod|
-                    puts "-----------"
-                    puts myprod.inspect
-                    myprodid = myprod.attributes['id']
-                    myprodtitle = myprod.attributes['title']
-                    myprod_type = myprod.attributes['product_type']
-                    mycreated_at = myprod.attributes['created_at']
-                    myupdated_at = myprod.attributes['updated_at']
-                    myhandle = myprod.attributes['handle']
-                    mytemplate_suffix = myprod.attributes['template_suffix']
-                    mybody_html = myprod.attributes['body_html']
-                    mytags = myprod.attributes['tags']
-                    mypublished_scope = myprod.attributes['published_scope']
-                    myvendor = myprod.attributes['vendor']
-                    myoptions = myprod.attributes['options'][0].attributes
-                    #puts myprod.attributes['options'][0].attributes.inspect
-                    #puts myprod.attributes['images'].inspect
-                    myimages_array = Array.new
-                    myprod.attributes['images'].each do |mystuff|
-                        #puts mystuff.inspect
-                        myimages_array << mystuff.attributes
-                    end
-                    #puts myprod.variants.inspect
-                    myvariants = myprod.variants
-                    myvariants.each do |myvar|
-                        puts "++++++++++++"
-                        #puts myvar.inspect
-                        puts myvar.attributes.inspect
-                        puts myvar.prefix_options[:product_id]
-                        puts "++++++++++++"
-                        myproduct_id = myvar.prefix_options[:product_id]
-                        myvariant_id = myvar.attributes['id']
-                        myvartitle = myvar.attributes['title']
-                        myprice = myvar.attributes['price']
-                        mysku = myvar.attributes['sku']
-                        myposition = myvar.attributes['position']
-                        myinventory_policy = myvar.attributes['inventory_policy']
-                        mycompare_at_price = myvar.attributes['compare_at_price']
-                        myfulfillment_service = myvar.attributes['fulfillment_service']
-                        myinventory_management = myvar.attributes['inventory_management']
-                        myoption1 = myvar.attributes['option1']
-                        myoption2 = myvar.attributes['option2']
-                        myoption3 = myvar.attributes['option3']
-                        mycreated_at = myvar.attributes['created_at']
-                        myupdated_at = myvar.attributes['updated_at']
-                        mytaxable = myvar.attributes['taxable']
-                        mybarcode = myvar.attributes['barcode']
-                        myweight_unit = myvar.attributes['weight_unit']
-                        myweight = myvar.attributes['weight']
-                        myinventory_quantity = myvar.attributes['inventory_quantity']
-                        myimage_id = myvar.attributes['image_id']
-                        mygrams = myvar.attributes['grams']
-                        myinventory_item_id = myvar.attributes['inventory_item_id']
-                        mytax_code = myvar.attributes['tax_code']
-                        myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
-                        myrequires_shipping = myvar.attributes['requires_shipping']
-                        myellie_variant = ZobhaVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: myvartitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
-
-                    end
-                    #puts myimages_array.inspect
-                    my_ellie_product = ZobhaProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
-                    puts "-----------"
-
-                end
-
-                puts "Done with Page #{page}"
-                puts "Sleeping 4 secs"
-                sleep 4
-            end
-            puts "All done with Zobha products"
-
-
-        end
-
-
-
-
-
-        def get_ellie_products
-            ShopifyAPI::Base.site = "https://#{@apikey}:#{@password}@#{@shopname}.myshopify.com/admin"
-            product_count = ShopifyAPI::Product.count()
-            puts "We have #{product_count} products for Ellie"
-
-            page_size = 250
-            pages = (product_count / page_size.to_f).ceil
-
-            EllieProduct.delete_all
-            ActiveRecord::Base.connection.reset_pk_sequence!('ellie_products')
-            EllieVariant.delete_all
-            ActiveRecord::Base.connection.reset_pk_sequence!('ellie_variants')
-
-            1.upto(pages) do |page|
-                myproducts = ShopifyAPI::Product.find(:all, params: {limit: 250, page: page})
-                myproducts.each do |myprod|
+            while products.next_page?
+                products = products.fetch_next_page
+        
+                products.each do |myprod|
                     puts "-----------"
                     myprodid = myprod.attributes['id']
                     myprodtitle = myprod.attributes['title']
@@ -571,18 +659,352 @@ module ShopifyOrders
                         mytax_code = myvar.attributes['tax_code']
                         myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
                         myrequires_shipping = myvar.attributes['requires_shipping']
-                        myellie_variant = EllieVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: mytitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
+                        MarikaVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: mytitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
 
                     end
                     #puts myimages_array.inspect
-                    my_ellie_product = EllieProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
+                    MarikaProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
+                    puts "-----------"
+
+                end
+                puts "sleeping 3 secs"
+                sleep 3
+            
+            end
+            puts "All done with products"
+
+
+        end
+
+        def get_zobha_products
+            ShopifyAPI::Base.site = "https://#{@zobha_key}:#{@zobha_password}@#{@zobha_shopname}.myshopify.com/admin"
+            ShopifyAPI::Base.api_version = '2021-10'
+            puts "https://#{@zobha_key}:#{@zobha_password}@#{@zobha_shopname}.myshopify.com/admin"
+            product_count = ShopifyAPI::Product.count()
+            puts "We have #{product_count} products for Zobha, BABY!"
+
+            # page_size = 250
+            # pages = (product_count / page_size.to_f).ceil
+            products = ShopifyAPI::Product.find(:all)
+
+            ZobhaProduct.delete_all
+            ActiveRecord::Base.connection.reset_pk_sequence!('marika_products')
+            ZobhaVariant.delete_all
+            ActiveRecord::Base.connection.reset_pk_sequence!('marika_variants')
+
+            products.each do |myprod|
+                
+                    puts "-----------"
+                    puts myprod.inspect
+                    myprodid = myprod.attributes['id']
+                    myprodtitle = myprod.attributes['title']
+                    myprod_type = myprod.attributes['product_type']
+                    mycreated_at = myprod.attributes['created_at']
+                    myupdated_at = myprod.attributes['updated_at']
+                    myhandle = myprod.attributes['handle']
+                    mytemplate_suffix = myprod.attributes['template_suffix']
+                    mybody_html = myprod.attributes['body_html']
+                    mytags = myprod.attributes['tags']
+                    mypublished_scope = myprod.attributes['published_scope']
+                    myvendor = myprod.attributes['vendor']
+                    myoptions = myprod.attributes['options'][0].attributes
+                    #puts myprod.attributes['options'][0].attributes.inspect
+                    #puts myprod.attributes['images'].inspect
+                    myimages_array = Array.new
+                    myprod.attributes['images'].each do |mystuff|
+                        #puts mystuff.inspect
+                        myimages_array << mystuff.attributes
+                    end
+                    #puts myprod.variants.inspect
+                    myvariants = myprod.variants
+                    myvariants.each do |myvar|
+                        puts "++++++++++++"
+                        #puts myvar.inspect
+                        puts myvar.attributes.inspect
+                        puts myvar.prefix_options[:product_id]
+                        puts "++++++++++++"
+                        myproduct_id = myvar.prefix_options[:product_id]
+                        myvariant_id = myvar.attributes['id']
+                        myvartitle = myvar.attributes['title']
+                        myprice = myvar.attributes['price']
+                        mysku = myvar.attributes['sku']
+                        myposition = myvar.attributes['position']
+                        myinventory_policy = myvar.attributes['inventory_policy']
+                        mycompare_at_price = myvar.attributes['compare_at_price']
+                        myfulfillment_service = myvar.attributes['fulfillment_service']
+                        myinventory_management = myvar.attributes['inventory_management']
+                        myoption1 = myvar.attributes['option1']
+                        myoption2 = myvar.attributes['option2']
+                        myoption3 = myvar.attributes['option3']
+                        mycreated_at = myvar.attributes['created_at']
+                        myupdated_at = myvar.attributes['updated_at']
+                        mytaxable = myvar.attributes['taxable']
+                        mybarcode = myvar.attributes['barcode']
+                        myweight_unit = myvar.attributes['weight_unit']
+                        myweight = myvar.attributes['weight']
+                        myinventory_quantity = myvar.attributes['inventory_quantity']
+                        myimage_id = myvar.attributes['image_id']
+                        mygrams = myvar.attributes['grams']
+                        myinventory_item_id = myvar.attributes['inventory_item_id']
+                        mytax_code = myvar.attributes['tax_code']
+                        myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
+                        myrequires_shipping = myvar.attributes['requires_shipping']
+                        ZobhaVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: myvartitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
+
+                    end
+                    #puts myimages_array.inspect
+                    ZobhaProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
+                    puts "-----------"
+
+                
+
+                
+                
+            end
+            puts "All done with first page"
+
+
+            while products.next_page?
+                products = products.fetch_next_page
+        
+                products.each do |myprod|
+                    puts "-----------"
+                    myprodid = myprod.attributes['id']
+                    myprodtitle = myprod.attributes['title']
+                    myprod_type = myprod.attributes['product_type']
+                    mycreated_at = myprod.attributes['created_at']
+                    myupdated_at = myprod.attributes['updated_at']
+                    myhandle = myprod.attributes['handle']
+                    mytemplate_suffix = myprod.attributes['template_suffix']
+                    mybody_html = myprod.attributes['body_html']
+                    mytags = myprod.attributes['tags']
+                    mypublished_scope = myprod.attributes['published_scope']
+                    myvendor = myprod.attributes['vendor']
+                    myoptions = myprod.attributes['options'][0].attributes
+                    #puts myprod.attributes['options'][0].attributes.inspect
+                    #puts myprod.attributes['images'].inspect
+                    myimages_array = Array.new
+                    myprod.attributes['images'].each do |mystuff|
+                        #puts mystuff.inspect
+                        myimages_array << mystuff.attributes
+                    end
+                    #puts myprod.variants.inspect
+                    myvariants = myprod.variants
+                    myvariants.each do |myvar|
+                        puts "++++++++++++"
+                        #puts myvar.inspect
+                        puts myvar.attributes.inspect
+                        puts myvar.prefix_options[:product_id]
+                        puts "++++++++++++"
+                        myproduct_id = myvar.prefix_options[:product_id]
+                        myvariant_id = myvar.attributes['id']
+                        mytitle = myvar.attributes['title']
+                        myprice = myvar.attributes['price']
+                        mysku = myvar.attributes['sku']
+                        myposition = myvar.attributes['position']
+                        myinventory_policy = myvar.attributes['inventory_policy']
+                        mycompare_at_price = myvar.attributes['compare_at_price']
+                        myfulfillment_service = myvar.attributes['fulfillment_service']
+                        myinventory_management = myvar.attributes['inventory_management']
+                        myoption1 = myvar.attributes['option1']
+                        myoption2 = myvar.attributes['option2']
+                        myoption3 = myvar.attributes['option3']
+                        mycreated_at = myvar.attributes['created_at']
+                        myupdated_at = myvar.attributes['updated_at']
+                        mytaxable = myvar.attributes['taxable']
+                        mybarcode = myvar.attributes['barcode']
+                        myweight_unit = myvar.attributes['weight_unit']
+                        myweight = myvar.attributes['weight']
+                        myinventory_quantity = myvar.attributes['inventory_quantity']
+                        myimage_id = myvar.attributes['image_id']
+                        mygrams = myvar.attributes['grams']
+                        myinventory_item_id = myvar.attributes['inventory_item_id']
+                        mytax_code = myvar.attributes['tax_code']
+                        myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
+                        myrequires_shipping = myvar.attributes['requires_shipping']
+                        ZobhaVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: mytitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
+
+                    end
+                    #puts myimages_array.inspect
+                    ZobhaProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
+                    puts "-----------"
+
+                end
+                puts "sleeping 3 secs"
+                sleep 3
+            
+            end
+            puts "All done with products"
+
+
+        end
+
+        def test_product_collection
+            ShopifyAPI::Base.site = "https://#{@apikey}:#{@password}@#{@shopname}.myshopify.com/admin"
+            my_stuff = ShopifyAPI::CustomCollection.where(title: "Ultraviolet - 3 Items\n").first.products
+            puts "my_stuff = #{my_stuff.inspect}"
+
+        end
+
+
+
+        def get_ellie_products
+            ShopifyAPI::Base.site = "https://#{@apikey}:#{@password}@#{@shopname}.myshopify.com/admin"
+            #ShopifyAPI::Base.site = shop_url
+            ShopifyAPI::Base.api_version = '2021-10'
+            ShopifyAPI::Base.timeout = 180
+
+            product_count = ShopifyAPI::Product.count()
+            puts "We have #{product_count} products for Ellie"
+            
+            
+
+            #page_size = 250
+            #pages = (product_count / page_size.to_f).ceil
+
+            EllieProduct.delete_all
+            ActiveRecord::Base.connection.reset_pk_sequence!('ellie_products')
+            EllieVariant.delete_all
+            ActiveRecord::Base.connection.reset_pk_sequence!('ellie_variants')
+
+            products = ShopifyAPI::Product.find(:all)
+
+            #First page
+            products.each do |myprod|
+
+                    puts "-----------"
+                    myprodid = myprod.attributes['id']
+                    myprodtitle = myprod.attributes['title']
+                    myprod_type = myprod.attributes['product_type']
+                    mycreated_at = myprod.attributes['created_at']
+                    myupdated_at = myprod.attributes['updated_at']
+                    myhandle = myprod.attributes['handle']
+                    mytemplate_suffix = myprod.attributes['template_suffix']
+                    mybody_html = myprod.attributes['body_html']
+                    mytags = myprod.attributes['tags']
+                    mypublished_scope = myprod.attributes['published_scope']
+                    myvendor = myprod.attributes['vendor']
+                    myoptions = myprod.attributes['options'][0].attributes
+                    #puts myprod.attributes['options'][0].attributes.inspect
+                    #puts myprod.attributes['images'].inspect
+                    myimages_array = Array.new
+                    myprod.attributes['images'].each do |mystuff|
+                        #puts mystuff.inspect
+                        myimages_array << mystuff.attributes
+                    end
+                    #puts myprod.variants.inspect
+                    myvariants = myprod.variants
+                    myvariants.each do |myvar|
+                        puts "++++++++++++"
+                        #puts myvar.inspect
+                        puts myvar.attributes.inspect
+                        puts myvar.prefix_options[:product_id]
+                        puts "++++++++++++"
+                        myproduct_id = myvar.prefix_options[:product_id]
+                        myvariant_id = myvar.attributes['id']
+                        mytitle = myvar.attributes['title']
+                        myprice = myvar.attributes['price']
+                        mysku = myvar.attributes['sku']
+                        myposition = myvar.attributes['position']
+                        myinventory_policy = myvar.attributes['inventory_policy']
+                        mycompare_at_price = myvar.attributes['compare_at_price']
+                        myfulfillment_service = myvar.attributes['fulfillment_service']
+                        myinventory_management = myvar.attributes['inventory_management']
+                        myoption1 = myvar.attributes['option1']
+                        myoption2 = myvar.attributes['option2']
+                        myoption3 = myvar.attributes['option3']
+                        mycreated_at = myvar.attributes['created_at']
+                        myupdated_at = myvar.attributes['updated_at']
+                        mytaxable = myvar.attributes['taxable']
+                        mybarcode = myvar.attributes['barcode']
+                        myweight_unit = myvar.attributes['weight_unit']
+                        myweight = myvar.attributes['weight']
+                        myinventory_quantity = myvar.attributes['inventory_quantity']
+                        myimage_id = myvar.attributes['image_id']
+                        mygrams = myvar.attributes['grams']
+                        myinventory_item_id = myvar.attributes['inventory_item_id']
+                        mytax_code = myvar.attributes['tax_code']
+                        myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
+                        myrequires_shipping = myvar.attributes['requires_shipping']
+                        EllieVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: mytitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
+
+                    end
+                    #puts myimages_array.inspect
+                    EllieProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
                     puts "-----------"
 
                 end
 
-                puts "Done with Page #{page}"
-                puts "Sleeping 4 secs"
-                sleep 4
+                
+            
+
+            while products.next_page?
+                products = products.fetch_next_page
+        
+                products.each do |myprod|
+                    puts "-----------"
+                    myprodid = myprod.attributes['id']
+                    myprodtitle = myprod.attributes['title']
+                    myprod_type = myprod.attributes['product_type']
+                    mycreated_at = myprod.attributes['created_at']
+                    myupdated_at = myprod.attributes['updated_at']
+                    myhandle = myprod.attributes['handle']
+                    mytemplate_suffix = myprod.attributes['template_suffix']
+                    mybody_html = myprod.attributes['body_html']
+                    mytags = myprod.attributes['tags']
+                    mypublished_scope = myprod.attributes['published_scope']
+                    myvendor = myprod.attributes['vendor']
+                    myoptions = myprod.attributes['options'][0].attributes
+                    #puts myprod.attributes['options'][0].attributes.inspect
+                    #puts myprod.attributes['images'].inspect
+                    myimages_array = Array.new
+                    myprod.attributes['images'].each do |mystuff|
+                        #puts mystuff.inspect
+                        myimages_array << mystuff.attributes
+                    end
+                    #puts myprod.variants.inspect
+                    myvariants = myprod.variants
+                    myvariants.each do |myvar|
+                        puts "++++++++++++"
+                        #puts myvar.inspect
+                        puts myvar.attributes.inspect
+                        puts myvar.prefix_options[:product_id]
+                        puts "++++++++++++"
+                        myproduct_id = myvar.prefix_options[:product_id]
+                        myvariant_id = myvar.attributes['id']
+                        mytitle = myvar.attributes['title']
+                        myprice = myvar.attributes['price']
+                        mysku = myvar.attributes['sku']
+                        myposition = myvar.attributes['position']
+                        myinventory_policy = myvar.attributes['inventory_policy']
+                        mycompare_at_price = myvar.attributes['compare_at_price']
+                        myfulfillment_service = myvar.attributes['fulfillment_service']
+                        myinventory_management = myvar.attributes['inventory_management']
+                        myoption1 = myvar.attributes['option1']
+                        myoption2 = myvar.attributes['option2']
+                        myoption3 = myvar.attributes['option3']
+                        mycreated_at = myvar.attributes['created_at']
+                        myupdated_at = myvar.attributes['updated_at']
+                        mytaxable = myvar.attributes['taxable']
+                        mybarcode = myvar.attributes['barcode']
+                        myweight_unit = myvar.attributes['weight_unit']
+                        myweight = myvar.attributes['weight']
+                        myinventory_quantity = myvar.attributes['inventory_quantity']
+                        myimage_id = myvar.attributes['image_id']
+                        mygrams = myvar.attributes['grams']
+                        myinventory_item_id = myvar.attributes['inventory_item_id']
+                        mytax_code = myvar.attributes['tax_code']
+                        myold_inventory_quantity = myvar.attributes['old_inventory_quantity']
+                        myrequires_shipping = myvar.attributes['requires_shipping']
+                        EllieVariant.create(variant_id: myvariant_id, product_id: myproduct_id, title: mytitle, price: myprice, sku: mysku, position: myposition, inventory_policy: myinventory_policy, compare_at_price: mycompare_at_price, fulfillment_service: myfulfillment_service, inventory_management: myinventory_management, option1: myoption1, option2: myoption2, option3: myoption3, created_at: mycreated_at, updated_at: myupdated_at, taxable: mytaxable, barcode: mybarcode, weight_unit: myweight_unit, weight: myweight, inventory_quantity: myinventory_quantity, image_id: myimage_id, grams: mygrams, inventory_item_id: myinventory_item_id, tax_code: mytax_code, old_inventory_quantity: myold_inventory_quantity, requires_shipping: myrequires_shipping  )
+
+                    end
+                    #puts myimages_array.inspect
+                    EllieProduct.create(product_id: myprodid, title: myprodtitle, product_type: myprod_type, created_at: mycreated_at, updated_at: myupdated_at, handle: myhandle, template_suffix: mytemplate_suffix, body_html: mybody_html, tags: mytags, published_scope: mypublished_scope, vendor: myvendor, options: myoptions, image: myimages_array)
+                    puts "-----------"
+
+                end
+            
             end
             puts "All done with products"
 
